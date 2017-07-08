@@ -1,14 +1,9 @@
-export class Todo
+export class Task
 {
-    private name: string;
+    name: string;
 
-    constructor(name : string)
+    constructor(name: string)
     {
         this.name = name;
-    }
-
-    getName():string
-    {
-        return this.name;
     }
 }
