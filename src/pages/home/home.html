@@ -16,7 +16,7 @@
         <h3>Olá, {{auth.nameUser}}</h3>
         <ion-list>
             <ion-item-sliding *ngFor="let task of tasks | async">
-                <ion-item>{{task.name}}</ion-item>
+                <ion-item (click)="editTask(task)">{{task.name}}</ion-item>
                 <ion-item-options slider="right">
                     <button ion-button color="danger" (click)="removeTask(task)">
                         <ion-icon name="trash"></ion-icon>
@@ -25,6 +25,16 @@
                 </ion-item-options>
             </ion-item-sliding>
         </ion-list>
+
+        <h2>My Position</h2>
+        <div *ngIf="position">
+            <p>Latitude: {{position.coords.latitude}}</p>
+            <p>Logintude: {{position.coords.longitude}}</p>
+            <agm-map [latitude]="position.coords.latitude" [longitude]="position.coords.longitude" [zoom]="15">
+                <agm-marker [latitude]="position.coords.latitude" [longitude]="position.coords.longitude"></agm-marker>
+            </agm-map>
+        </div>
+
     </div>
     <div *ngIf="!auth.authenticated">
         <button ion-button icon-left (click)="login()">

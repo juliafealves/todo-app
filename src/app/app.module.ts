@@ -7,6 +7,9 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
 
+import {AgmCoreModule} from '@agm/core';
+import {Geolocation} from '@ionic-native/geolocation'
+
 /**
  * Configuration Firebase in Angular.
  */
@@ -34,7 +37,10 @@ let config = {
         IonicModule.forRoot(MyApp),
         AngularFireModule.initializeApp(config),
         AngularFireDatabaseModule,
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyAKaeXnt9XpdUAecGkNNwNXvMeM_x0xRgQ'
+        })
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -45,7 +51,8 @@ let config = {
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+        AuthProvider,
+        Geolocation
     ]
 })
 export class AppModule {
